@@ -32,8 +32,12 @@ def uczelnie(request):
     """Widok wyświetlający miasta i formularz ich dodawania"""
     if request.method == 'POST':
         nazwa = request.POST.get('nazwa', '')
-        u = Uczelnia(nazwa=nazwa)
-        u.save()
+        if len(nazwa.strip()):
+            u = Uczelnia(nazwa=nazwa)
+            u.save()
+            messages.success(request, "poprawnie dodano dane!")
+        else:
+            messages.error(request, "Niepoprawne dane!")
 
     uczelnie = Uczelnia.objects.all()
     kontekst = {'uczelnie': uczelnie}

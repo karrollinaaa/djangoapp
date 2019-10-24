@@ -9,6 +9,3 @@ def index(request):
 def komunikat(request):
     #return HttpResponse("<h1>Komunikat!</h1>")
     return render(request, 'pizza/komunikat.html')
-
-def karolina(request):
-    return HttpResponse("<h1>Cześć tu Karolina! :)</h1>")
