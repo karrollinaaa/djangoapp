@@ -4,6 +4,8 @@ from django.http import HttpResponse
 
 from studenci.models import Miasto, Uczelnia
 
+from django.contrib import messages
+
 
 def index(request):
     return HttpResponse("<h1>Witaj wsród sudentów!</h1>")
@@ -15,8 +17,12 @@ def miasta(request):
     if request.method == 'POST':
         nazwa = request.POST.get('nazwa', '')
         kod = request.POST.get('kod', '')
-        m = Miasto(nazwa=nazwa, kod=kod)
-        m.save()
+        if len(nazwa.strip()) and len(kod.strip()):
+            m = Miasto(nazwa=nazwa, kod=kod)
+            m.save()
+            messages.success(request, "poprawnie dodano dane!")
+        else:
+            messages.error(request, "Niepoprawne dane!")
 
     miasta = Miasto.objects.all()
     kontekst = {'miasta': miasta}
