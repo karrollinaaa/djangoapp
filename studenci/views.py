@@ -42,3 +42,5 @@ def uczelnie(request):
     uczelnie = Uczelnia.objects.all()
     kontekst = {'uczelnie': uczelnie}
     return render(request, 'studenci/uczelnie.html', kontekst)
+
+def loguj_studenta(request)
