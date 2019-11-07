@@ -1,13 +1,11 @@
 {% extends 'szablon.html' %}
-<title>{% block tytul %}Lista Uczelni{% endblock tytul %}</title>
-
 {% block naglowek %}Uczelnie{% endblock naglowek %}
-
 {% block tresc %}
-<h2>Dodaj uczelnie</h2>
+
+<h2>Dodaj uczelnię</h2>
     <form action="." method="POST">
     {% csrf_token %}
-        <input type="text" name="nazwa" size="30">
+        {{ form.as_p }}
         <input type="submit" value="Zapisz">
     </form>
 
@@ -17,4 +15,5 @@
         <li>{{ uczelnia.nazwa }}</li>
     {% endfor %}
 </ol>
+
 {% endblock tresc %}

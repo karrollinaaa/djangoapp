@@ -7,10 +7,7 @@
 <h2>Dodaj miasto</h2>
     <form action="." method="POST">
     {% csrf_token %}
-        <input type="text" name="nazwa" size="30" maxlength="30">
-        <br>
-        <input type="text" name="kod" size="30" maxlength="6">
-        <br>
+        {{ form.as_p }}
         <input type="submit" value="Zapisz">
     </form>
 

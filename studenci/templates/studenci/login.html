@@ -4,7 +4,6 @@
 {% block naglowek %}Sudenci - Logowanie{% endblock naglowek %}
 
 {% block tresc %}
-<h2>Dodaj miasto</h2>
     <form action="." method="POST">
     {% csrf_token %}
         {{ form.as_p }}

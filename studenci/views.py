@@ -1,10 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 
 from studenci.models import Miasto, Uczelnia
 
 from django.contrib import messages
+
+from django.urls import reverse
+
+from studenci.forms import UserLoginForm, UczelniaForm, MiastoForm
 
 
 def index(request):
@@ -15,32 +19,46 @@ def index(request):
 def miasta(request):
     """Widok wyświetlający miasta i formularz ich dodawania"""
     if request.method == 'POST':
-        nazwa = request.POST.get('nazwa', '')
-        kod = request.POST.get('kod', '')
-        if len(nazwa.strip()) and len(kod.strip()):
-            m = Miasto(nazwa=nazwa, kod=kod)
+        form = MiastoForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            m = Miasto(nazwa=form.cleaned_data['nazwa'], kod=form.cleaned_data['kod'])
             m.save()
             messages.success(request, "poprawnie dodano dane!")
+            return redirect(reverse('studenci:miasta'))
         else:
             messages.error(request, "Niepoprawne dane!")
+    else:
+        form = MiastoForm
 
     miasta = Miasto.objects.all()
-    kontekst = {'miasta': miasta}
+    kontekst = {'miasta': miasta, 'form': form}
     return render(request, 'studenci/miasta.html', kontekst)
 
 def uczelnie(request):
     """Widok wyświetlający miasta i formularz ich dodawania"""
     if request.method == 'POST':
-        nazwa = request.POST.get('nazwa', '')
-        if len(nazwa.strip()):
-            u = Uczelnia(nazwa=nazwa)
+        form = UczelniaForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            u = Uczelnia(nazwa=form.cleaned_data['nazwa'])
             u.save()
-            messages.success(request, "poprawnie dodano dane!")
+            messages.success(request, "Poprawnie dodano dane!")
+            return redirect(reverse('studenci:uczelnie'))
         else:
             messages.error(request, "Niepoprawne dane!")
+    else:
+        form = UczelniaForm
 
     uczelnie = Uczelnia.objects.all()
-    kontekst = {'uczelnie': uczelnie}
+    kontekst = {'uczelnie': uczelnie, 'form': form}
     return render(request, 'studenci/uczelnie.html', kontekst)
 
-def loguj_studenta(request)
+
+def loguj_studenta(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = UserLoginForm()
+    kontekst = {'form': form}
+    return render(request, 'studenci/login.html', kontekst)
