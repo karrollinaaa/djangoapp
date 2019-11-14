@@ -6,6 +6,7 @@
     <title>{% block tytul %}Projekt Django{% endblock tytul %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-sm bg-light">
         <a class="navbar-brand" href="http://lo1.sandomierz.pl">I LO CG</a>
@@ -13,7 +14,23 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Pizza</a>
+                    <div class="dropdown-menu">
+                        <a href="{% url 'pizza:index' %}" class="dropdown-item">Strona główna</a>
+                        <a href="{% url 'pizza:komunikat' %}" class="dropdown-item">Komunikat</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Studenci</a>
+                    <div class="dropdown-menu">
+                        <a href="{% url 'studenci:miasta' %}" class="dropdown-item">Miasta</a>
+                        <a href="{% url 'studenci:uczelnie' %}" class="dropdown-item">Uczelnie</a>
+                        <a href="{% url 'studenci:login' %}" class="dropdown-item">Login</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 
