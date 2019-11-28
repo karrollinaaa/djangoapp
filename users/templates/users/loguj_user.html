@@ -1,0 +1,18 @@
+{% extends 'szablon.html' %}
+<title>{% block tytul %}Logowanie{% endblock tytul %}</title>
+
+{% block naglowek %} Logowanie {% endblock naglowek %}
+
+{% block tresc %}
+
+	{%  if user.is_authenticated %}
+		<p>Jesteś już zalogowany jako {{ user.username }} .</p>
+	{% else %}
+		<form action="." method="POST">
+		{% csrf_token %}
+		 {{  form.as_p }}
+		<button type="submit">Zaloguj</button>
+		</form>
+	{% endif %}
+
+{% endblock tresc %}

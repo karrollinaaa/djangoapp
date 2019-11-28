@@ -38,22 +38,22 @@
         <div class="row">
             <div class="col">
 
-<h1>{% block naglowek %}Projekt Django{% endblock naglowek %}</h1>
+                <h1>{% block naglowek %}Projekt Django{% endblock naglowek %}</h1>
 
-{% block komunikaty %}
-{% if messages %}
-    <ul>
-    {% for komunikat in messages %}
-        <li>{{ komunikat }}</li>
-    {% endfor %}
-    </ul>
+                {% block komunikaty %}
+                {% if messages %}
+                    <ul>
+                    {% for komunikat in messages %}
+                        <li>{{ komunikat }}</li>
+                    {% endfor %}
+                    </ul>
 
-{% endif %}
-{% endblock komunikaty %}
+                {% endif %}
+                {% endblock komunikaty %}
 
 
-{% block tresc %}
-{% endblock tresc %}
+                {% block tresc %}
+                {% endblock tresc %}
 
             </div>
         </div>
